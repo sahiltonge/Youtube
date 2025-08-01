@@ -8,9 +8,10 @@ import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 import VideoCallIcon from '@mui/icons-material/VideoCall';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import PersonIcon from '@mui/icons-material/Person';
-import SideNavbar from '../Side-Navbar/SideNavbar';
 import Login from '../Login/login';
 import axios from 'axios';
+
+const BASE_URL = 'https://youtube-ujja.onrender.com';
 
 const Navbar = ({ setsideNavbarFunc, sideNavbar }) => {
   const [user, setUser] = useState(null);
@@ -26,7 +27,7 @@ const Navbar = ({ setsideNavbarFunc, sideNavbar }) => {
         const token = localStorage.getItem('token');
         if (!token) return;
 
-        const res = await axios.get('/api/auth/me', {
+        const res = await axios.get(`${BASE_URL}/api/user/me`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUser(res.data);
@@ -126,12 +127,18 @@ const Navbar = ({ setsideNavbarFunc, sideNavbar }) => {
                 <div className="navbar-modal-option" onClick={handleProfile}>
                   Profile
                 </div>
-                <div className="navbar-modal-option" onClick={() => onClickOfPopUpOption('logout')}>
+                <div
+                  className="navbar-modal-option"
+                  onClick={() => onClickOfPopUpOption('logout')}
+                >
                   Logout
                 </div>
               </>
             ) : (
-              <div className="navbar-modal-option" onClick={() => onClickOfPopUpOption('login')}>
+              <div
+                className="navbar-modal-option"
+                onClick={() => onClickOfPopUpOption('login')}
+              >
                 Login
               </div>
             )}

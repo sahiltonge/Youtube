@@ -2,6 +2,7 @@ import React from "react";
 import './App.css'
 import { useState } from "react";
 import { Route,Routes } from "react-router-dom";
+import axios from "axios";
 
 import Navbar from "./Components/Navbar/navbar";
 import Home from "./Pages/Home/home";
